@@ -62,6 +62,6 @@ def tts(text):
         try:
             t = TTSSpr.objects.get(word=word)
             r.append(t.speech)
-        except TTSSpr.ObjectDoesNotExist:
+        except TTSSpr.DoesNotExist:
             r.append(word)
     return ' '.join(r)
