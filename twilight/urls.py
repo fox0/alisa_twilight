@@ -4,5 +4,5 @@ from twilight import views
 
 urlpatterns = (
     path('admin/', admin.site.urls),
-    path('', views.api),
+    path('', views.webhook),
 )
