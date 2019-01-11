@@ -4,7 +4,7 @@ from json import JSONDecoder, JSONEncoder
 from django.http import HttpResponse
 
 from twilight.core import prosess, str2tokens
-from twilight.models import TTSSpr
+from twilight.models import Log, TTSSpr
 
 log = logging.getLogger(__name__)
 
@@ -33,8 +33,20 @@ def webhook(request):
         # todo
         # "Давно не виделись" - проверять дату последней активности
         # "Привет, меня зовут Твайлайт Спаркл. А тебя?" - новый пользователь
-    # todo log db
+    logging(json, tokens, text)
     return render(json, text)
+
+
+def logging(json, tokens, text):
+    a = Log(
+        user_id=json['session']['user_id'],
+        session_id=json['session']['session_id'],
+        message_id=json['session']['message_id'],
+        ask=' '.join(tokens),
+        ans=text,
+    )
+    a.save()
+    # todo log.
 
 
 def render(json, text):

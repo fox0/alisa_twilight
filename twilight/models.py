@@ -1,8 +1,13 @@
 from django.db import models
 
 
-# todo log
-# user_id + session_id + message_id + in + out
+class Log(models.Model):
+    """Лог запросов к боту"""
+    user_id = models.CharField(max_length=64)
+    session_id = models.CharField(max_length=64)
+    message_id = models.IntegerField()
+    ask = models.CharField(max_length=1024)
+    ans = models.CharField(max_length=1024)
 
 
 class TTSSpr(models.Model):
