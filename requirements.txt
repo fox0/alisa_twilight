@@ -1,0 +1,6 @@
+pymorphy2
+#pymorphy2[fast]
+# todo Last released: Aug 29, 2017
+pymorphy2-dicts-ru
+
+django==2.0
