@@ -18,7 +18,7 @@ def alisa_api(func):
         try:
             text = func(json['request']['nlu']['tokens'])
         except Exception:
-            text = traceback.format_exc()
+            text = traceback.format_exc()[:-1024]
         r = {
             'response': {
                 'text': text,
