@@ -1,7 +1,10 @@
 import logging
 from json import JSONDecoder, JSONEncoder
+
 from django.http import HttpResponse
-from twilight.core import prosess
+
+from twilight.core import prosess, str2tokens
+from twilight.models import TTSSpr
 
 log = logging.getLogger(__name__)
 
@@ -17,6 +20,8 @@ def webhook(request):
     # todo parse type
     tokens = json['request']['nlu']['tokens']
     if tokens:
+        # todo state = func
+
         # noinspection PyBroadException
         try:
             text = prosess(tokens)
@@ -28,6 +33,7 @@ def webhook(request):
         # todo
         # "Давно не виделись" - проверять дату последней активности
         # "Привет, меня зовут Твайлайт Спаркл. А тебя?" - новый пользователь
+    # todo log db
     return render(json, text)
 
 
@@ -50,5 +56,12 @@ def render(json, text):
 
 
 def tts(text):
-    # todo расстановка ударений
-    return text
+    """Расстановка знаков ударения"""
+    r = []
+    for word in str2tokens(text):
+        try:
+            t = TTSSpr.objects.get(word=word)
+            r.append(t.speech)
+        except TTSSpr.ObjectDoesNotExist:
+            r.append(word)
+    return ' '.join(r)
