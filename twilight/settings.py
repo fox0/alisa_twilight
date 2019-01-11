@@ -12,7 +12,7 @@ SECRET_KEY = '2x8yki_$7wjg&e&8mn(^e))n9f4&2p(+%f)%m25!hq6xe0ej-c'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['fox0.pythonanywhere.com']
 
 # Application definition
 
