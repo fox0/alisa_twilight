@@ -3,4 +3,4 @@ pymorphy2
 # todo Last released: Aug 29, 2017
 pymorphy2-dicts-ru
 
-django==2.2.9
+django==2.2.13
